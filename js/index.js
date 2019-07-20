@@ -1,3 +1,4 @@
+const rootURL = 'https://api.github.com';
 function getRepositories() {
   const name = document.getElementById('username').value;
   const uri = rootURL + '/users/' + name + '/repos';
@@ -5,7 +6,6 @@ function getRepositories() {
   xhr.addEventListener('load', displayRepositories);
   xhr.open('GET', uri);
   xhr.send();
-  return false;
 }
 function displayRepositories() {
   const repos = JSON.parse(this.responseText);
@@ -54,8 +54,7 @@ function displayCommits() {
 }
 function getBranches(el) {
   const repoName = el.dataset.repository;
-  const uri =
-    rootURL + '/repos/' + el.dataset.username + '/' + repoName + '/branches';
+  const uri = rootURL + '/repos/' + el.dataset.username + '/' + repoName + '/branches';
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load', displayBranches);
   xhr.open('GET', uri);
